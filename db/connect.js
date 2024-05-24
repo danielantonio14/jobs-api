@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const connectDB = (url) => {
   return mongoose.connect(url, {
@@ -7,6 +7,12 @@ const connectDB = (url) => {
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-}
+      .then(() => {
+        console.log('MongoDB connected successfully');
+      })
+      .catch((error) => {
+        console.error('MongoDB connection failed:', error);
+      });
+};
 
-module.exports = connectDB
+module.exports = connectDB;
